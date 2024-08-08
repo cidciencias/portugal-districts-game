@@ -16,10 +16,7 @@ while len(guessed_districts) < 18:
                                     prompt="What's another district name?").title()
 
     if answer_district == "Exit":
-        missing_districts = []
-        for district in all_districts:
-            if district not in guessed_districts:
-                missing_districts.append(district)
+        missing_districts = [district for district in all_districts if district not in guessed_districts]
         new_data = pandas.DataFrame(missing_districts)
         new_data.to_csv("districts_to_learn.csv")
         break
